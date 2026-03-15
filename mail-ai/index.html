@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MAIL-AI</title>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=DM+Sans:wght@300;400;500;600&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+  <div class="wrapper">
+
+    <header>
+      <div class="logo-mark">
+        <div class="logo-icon">✉️</div>
+        <span class="logo-text">Mail <span>AI</span></span>
+      </div>
+      <h1>Trợ Lý Viết Email<br>Thông Minh</h1>
+      <p class="subtitle">Tạo email sales & chăm sóc khách hàng chuyên nghiệp trong vài giây với sức mạnh AI.</p>
+      <div class="divider"></div>
+    </header>
+
+    <!-- Form Card -->
+    <div class="card">
+      <div class="card-title">Thông tin email</div>
+
+      <div class="form-grid">
+        <!-- Mục tiêu email -->
+        <div class="form-group full">
+          <label>Mục tiêu email</label>
+          <select id="emailGoal">
+            <option value="">— Chọn mục tiêu —</option>
+            <option value="Giới thiệu sản phẩm mới">🚀 Giới thiệu sản phẩm mới</option>
+            <option value="Cảm ơn khách hàng">🙏 Cảm ơn khách hàng</option>
+            <option value="Nhắc nhở thanh toán">💰 Nhắc nhở thanh toán</option>
+            <option value="Giải quyết khiếu nại">🛠️ Giải quyết khiếu nại</option>
+            <option value="Chào hàng / Upsell">📈 Chào hàng / Upsell</option>
+            <option value="Gia hạn hợp đồng">🔄 Gia hạn hợp đồng</option>
+            <option value="Khảo sát phản hồi">📋 Khảo sát phản hồi</option>
+            <option value="Thông báo chương trình khuyến mãi">🎁 Chương trình khuyến mãi</option>
+            <option value="Follow-up sau cuộc họp">📞 Follow-up sau cuộc họp</option>
+          </select>
+        </div>
+
+        <!-- Tên khách hàng -->
+        <div class="form-group">
+          <label>Tên khách hàng</label>
+          <input type="text" id="customerName" placeholder="Nguyễn Văn A / Anh Minh / Chị Lan…" />
+        </div>
+
+        <!-- Tên sản phẩm / dịch vụ -->
+        <div class="form-group">
+          <label>Sản phẩm / Dịch vụ</label>
+          <input type="text" id="productName" placeholder="CRM Pro, Gói Premium, Dịch vụ X…" />
+        </div>
+
+        <!-- Tên người gửi -->
+        <div class="form-group">
+          <label>Người gửi</label>
+          <input type="text" id="senderName" placeholder="Tên bạn / công ty" />
+        </div>
+
+        <!-- Ngôn ngữ -->
+        <div class="form-group">
+          <label>Ngôn ngữ output</label>
+          <select id="language">
+            <option value="Tiếng Việt">🇻🇳 Tiếng Việt</option>
+            <option value="English">🇬🇧 English</option>
+          </select>
+        </div>
+
+        <!-- Thông tin cụ thể -->
+        <div class="form-group full">
+          <label>Thông tin cụ thể cần truyền tải</label>
+          <textarea id="details"
+            placeholder="Ví dụ: Sản phẩm ra mắt ngày 20/3, giảm 30% trong tuần đầu, khách hàng đã dùng bản trial 14 ngày, liên hệ qua Zalo 0912…"></textarea>
+        </div>
+
+        <!-- Tone -->
+        <div class="form-group full">
+          <label>Giọng điệu</label>
+          <div class="tone-group" id="toneGroup">
+            <div class="tone-pill active" data-tone="Chuyên nghiệp">💼 Chuyên nghiệp</div>
+            <div class="tone-pill" data-tone="Thân thiện">😊 Thân thiện</div>
+            <div class="tone-pill" data-tone="Nhiệt tình & Hứng khởi">🔥 Nhiệt tình</div>
+            <div class="tone-pill" data-tone="Trang trọng & Lịch sự">🎩 Trang trọng</div>
+            <div class="tone-pill" data-tone="Ngắn gọn & Súc tích">⚡ Ngắn gọn</div>
+            <div class="tone-pill" data-tone="Đồng cảm & Quan tâm">💙 Đồng cảm</div>
+          </div>
+        </div>
+      </div>
+
+      <button class="btn-generate" id="generateBtn" onclick="generateEmail()">
+        <div class="spinner"></div>
+        <span class="btn-text">✨ Tạo Email Ngay</span>
+      </button>
+    </div>
+
+    <!-- Output -->
+    <div class="card output-card hidden" id="outputCard">
+      <div class="card-title">Email đã được tạo</div>
+
+      <div id="errorBox" class="error-box" style="display:none;"></div>
+
+      <div id="emailOutput">
+        <!-- Subject -->
+        <div class="email-section" id="subjectSection">
+          <div class="email-section-header">
+            <span class="email-label">📌 Tiêu đề (Subject)</span>
+            <button class="copy-btn" onclick="copySection('subject')">
+              <span>📋</span> <span id="copySubjectText">Copy</span>
+            </button>
+          </div>
+          <div class="subject-box" id="subjectContent"></div>
+        </div>
+
+        <!-- Body -->
+        <div class="email-section" id="bodySection">
+          <div class="email-section-header">
+            <span class="email-label">📝 Nội dung email</span>
+            <button class="copy-btn" onclick="copySection('body')">
+              <span>📋</span> <span id="copyBodyText">Copy</span>
+            </button>
+          </div>
+          <div class="body-box" id="bodyContent"></div>
+        </div>
+
+        <button class="copy-all-btn" onclick="copyAll()">
+          📋 Sao chép toàn bộ email
+        </button>
+      </div>
+    </div>
+
+    <footer>MailAI · Build for CRM, Sales & Customer Care</footer>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+
+</html>
