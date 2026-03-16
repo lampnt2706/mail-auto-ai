@@ -1,4 +1,4 @@
-const GEMINI_API_KEY = 'AIzaSyBKmlUH9QxWiZZQYVaTe9NTI9ycnKl38FQ';
+const GEMINI_API_KEY = import.meta.env.VITE_GEMINI_API_KEY;
 
 // Tone selection
 let selectedTone = 'Chuyên nghiệp';
@@ -234,3 +234,6 @@ function copyAll() {
     }, 2500);
   });
 }
+window.generateEmail = generateEmail;
+window.copySection = copySection;
+window.copyAll = copyAll;

@@ -1,0 +1,23 @@
+# Dependencies
+node_modules/
+
+# Environment variables (chứa API key - quan trọng!)
+.env
+.env.local
+.env.*.local
+
+# Vite build output
+dist/
+dist-ssr/
+
+# Cache
+.vite/
+*.local
+
+# Editor
+.vscode/
+.idea/
+
+# OS
+.DS_Store
+Thumbs.db
