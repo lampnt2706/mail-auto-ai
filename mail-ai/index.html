@@ -55,7 +55,13 @@
         <!-- Tên sản phẩm / dịch vụ -->
         <div class="form-group">
           <label>Sản phẩm / Dịch vụ</label>
-          <input type="text" id="productName" placeholder="CRM Pro, Gói Premium, Dịch vụ X…" />
+          <select id="productName">
+            <option value="">— Chọn sản phẩm / dịch vụ —</option>
+            <option value="CRM">CRM</option>
+            <option value="Sales">Sales</option>
+            <option value="Chăm sóc khách hàng">Chăm sóc khách hàng</option>
+            <option value="Marketing">Marketing</option>
+          </select>
         </div>
 
         <!-- Tên người gửi -->
@@ -84,12 +90,30 @@
         <div class="form-group full">
           <label>Giọng điệu</label>
           <div class="tone-group" id="toneGroup">
-            <div class="tone-pill active" data-tone="Chuyên nghiệp">💼 Chuyên nghiệp</div>
-            <div class="tone-pill" data-tone="Thân thiện">😊 Thân thiện</div>
-            <div class="tone-pill" data-tone="Nhiệt tình & Hứng khởi">🔥 Nhiệt tình</div>
-            <div class="tone-pill" data-tone="Trang trọng & Lịch sự">🎩 Trang trọng</div>
-            <div class="tone-pill" data-tone="Ngắn gọn & Súc tích">⚡ Ngắn gọn</div>
-            <div class="tone-pill" data-tone="Đồng cảm & Quan tâm">💙 Đồng cảm</div>
+            <label class="tone-check">
+              <input type="checkbox" class="tone-input" value="Chuyên nghiệp" checked />
+              <span class="tone-pill">💼 Chuyên nghiệp</span>
+            </label>
+            <label class="tone-check">
+              <input type="checkbox" class="tone-input" value="Thân thiện" />
+              <span class="tone-pill">😊 Thân thiện</span>
+            </label>
+            <label class="tone-check">
+              <input type="checkbox" class="tone-input" value="Nhiệt tình & Hứng khởi" />
+              <span class="tone-pill">🔥 Nhiệt tình</span>
+            </label>
+            <label class="tone-check">
+              <input type="checkbox" class="tone-input" value="Trang trọng & Lịch sự" />
+              <span class="tone-pill">🎩 Trang trọng</span>
+            </label>
+            <label class="tone-check">
+              <input type="checkbox" class="tone-input" value="Ngắn gọn & Súc tích" />
+              <span class="tone-pill">⚡ Ngắn gọn</span>
+            </label>
+            <label class="tone-check">
+              <input type="checkbox" class="tone-input" value="Đồng cảm & Quan tâm" />
+              <span class="tone-pill">💙 Đồng cảm</span>
+            </label>
           </div>
         </div>
       </div>
@@ -138,7 +162,9 @@
     <footer>MailAI · Build for CRM, Sales & Customer Care</footer>
   </div>
 
- <script type="module" src="/script.js"></script>
+  <div class="toast-host" id="toastHost" aria-live="polite" aria-atomic="true"></div>
+
+ <script type="module" src="script.js"></script>
 </body>
 
 </html>
